@@ -1,0 +1,36 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>home</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+
+        <div class="col-md-offset-3 col-md-6">
+
+
+            <div class="page-header">
+                <h1><a href="{% url 'ihome' %}" class="top-menu"> Companies list </a></h1>
+            </div>
+          <a href="{% url 'create' %}" class="top-menu"> <span class="glyphicon glyphicon-plus"></span>Add new  </a><br>
+
+     <ul>
+         {% for obj in cl %}
+        <table border = solid 2px>
+        <tr>
+
+            <a href="{{ obj.get_absolute_url }}"><h3>{{ obj.id }}.{{ obj.company_name }} </h3>{% if obj.company_logo %}<img src='{{obj.company_logo.url}}'/>{% endif %}
+            </a>
+
+        </tr><br>
+        <a href="{% url "detail" id=obj.id %}" class="btn btn-primary" role="button">View Details</a>
+
+        </table>
+         {% endfor %}
+     </ul>
+
+        </div>
+    </body>
+</html>
